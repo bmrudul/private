@@ -1,0 +1,2 @@
+2020-11-23 15:06:33 [main] INFO  c.p.publisher.PublisherApplication - No active profile set, falling back to default profiles: default
+2020-11-23 15:06:40 [main] INFO  c.p.publisher.PublisherApplication - Started PublisherApplication in 8.816 seconds (JVM running for 9.561)

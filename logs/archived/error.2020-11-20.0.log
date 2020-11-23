@@ -1,0 +1,27 @@
+2020-11-20 15:50:56 [http-nio-8080-exec-3] ERROR c.p.p.controller.PublisherController - test
+2020-11-20 15:52:53 [main] INFO  c.p.publisher.PublisherApplication - No active profile set, falling back to default profiles: default
+2020-11-20 15:52:55 [main] INFO  o.s.web.context.ContextLoader - Root WebApplicationContext: initialization completed in 1850 ms
+2020-11-20 15:52:58 [main] INFO  c.p.publisher.PublisherApplication - Started PublisherApplication in 6.756 seconds (JVM running for 7.419)
+2020-11-20 15:53:09 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2020-11-20 15:53:09 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 8 ms
+2020-11-20 15:53:23 [http-nio-8080-exec-4] INFO  c.p.p.controller.PublisherController - test
+2020-11-20 15:53:23 [http-nio-8080-exec-4] ERROR c.p.p.controller.PublisherController - test
+2020-11-20 17:00:34 [main] INFO  c.p.publisher.PublisherApplication - No active profile set, falling back to default profiles: default
+2020-11-20 17:00:40 [main] INFO  c.p.publisher.PublisherApplication - Started PublisherApplication in 8.898 seconds (JVM running for 9.803)
+2020-11-20 17:05:26 [http-nio-8080-exec-2] INFO  c.p.p.controller.PublisherController - test
+2020-11-20 17:05:26 [http-nio-8080-exec-2] ERROR c.p.p.controller.PublisherController - test
+2020-11-20 17:05:55 [http-nio-8080-exec-6] INFO  c.p.p.controller.PublisherController - test
+2020-11-20 17:05:55 [http-nio-8080-exec-6] ERROR c.p.p.controller.PublisherController - test
+2020-11-20 17:06:58 [main] INFO  c.p.publisher.PublisherApplication - No active profile set, falling back to default profiles: default
+2020-11-20 17:07:03 [main] INFO  c.p.publisher.PublisherApplication - Started PublisherApplication in 6.943 seconds (JVM running for 7.762)
+2020-11-20 17:07:13 [http-nio-8080-exec-3] INFO  c.p.p.controller.PublisherController - test
+2020-11-20 17:07:13 [http-nio-8080-exec-3] ERROR c.p.p.controller.PublisherController - test
+2020-11-20 17:07:38 [http-nio-8080-exec-5] INFO  c.p.p.controller.PublisherController - test
+2020-11-20 17:07:38 [http-nio-8080-exec-5] ERROR c.p.p.controller.PublisherController - test
+2020-11-20 17:09:33 [main] INFO  c.p.publisher.PublisherApplication - No active profile set, falling back to default profiles: default
+2020-11-20 17:09:40 [main] INFO  c.p.publisher.PublisherApplication - Started PublisherApplication in 9.176 seconds (JVM running for 10.151)
+2020-11-20 17:10:01 [http-nio-8080-exec-4] INFO  c.p.p.controller.PublisherController - test
+2020-11-20 17:10:01 [http-nio-8080-exec-4] ERROR c.p.p.controller.PublisherController - test
+2020-11-20 19:32:29 [main] INFO  c.p.publisher.PublisherApplication - No active profile set, falling back to default profiles: default
+2020-11-20 19:32:34 [main] INFO  c.p.publisher.PublisherApplication - Started PublisherApplication in 6.65 seconds (JVM running for 7.441)
+2020-11-20 19:38:32 [main] INFO  c.p.publisher.PublisherApplication - No active profile set, falling back to default profiles: default

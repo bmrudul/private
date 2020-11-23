@@ -1,0 +1,184 @@
+swagger: "2.0"
+
+info:
+  title: PK Microservices Assignment
+  description: Swagger documentation for Publisher service.
+  contact:
+    email: bmrudul@pkglobal.com
+  version: 1.0.0
+
+tags:
+  - name: "publisher"
+    description: "Everything about publisher"
+
+schemes:
+  - "http"
+
+basePath: "/v1/publisher"
+
+paths:
+  /publisher:
+    post:
+      tags:
+        - "publisher"
+      summary: "Publish customer data to Kafka"
+      description: ""
+      operationId: "PublishCustomer"
+      consumes:
+        - "application/json"
+      produces:
+        - "application/json"
+      parameters:
+        - in: "body"
+          name: "body"
+          description: "Customer object that needs to be published to Kafka"
+          required: true
+          schema:
+            $ref: "#/definitions/Customer"
+        - in: "header"
+          name: "Authorization"
+          description: "Authorization request header contains access_token to access the API."
+          required: false
+          type: "string"
+        - in: "header"
+          name: "Activity-Id"
+          required: false
+          type: "string"
+        - in: "header"
+          name: "Transaction-Id"
+          required: false
+          type: "string"
+      responses:
+        '200':
+          description: "successful operation"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/Response"
+        '500':
+          description: "error operation"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/ErrorResponse"
+        '404':
+          description: "Resource not found."
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/ErrorResponse"
+        '401':
+          description: "Authorization required"
+      security:
+        - publisher_auth:
+            - "write:publisher"
+
+securityDefinitions:
+  publisher_auth:
+    type: "oauth2"
+    tokenUrl: http://localhost:8080/oauth/token
+    flow: "application"
+    scopes:
+      write:publisher: "Publish customer data"
+
+definitions:
+  Customer:
+    required:
+      - "address"
+      - "birthdate"
+      - "country"
+      - "countryCode"
+      - "customerNumber"
+      - "customerStatus"
+      - "email"
+      - "firstName"
+      - "lastName"
+      - "mobileNumber"
+    type: "object"
+    properties:
+      customerNumber:
+        type: "string"
+        example: "C000000001"
+      firstName:
+        type: "string"
+        example: "C000000001"
+      lastName:
+        type: "string"
+        example: "customer_last_name"
+      birthdate:
+        type: "string"
+        format: "date-time"
+      country:
+        type: "string"
+        example: "India"
+      countryCode:
+        type: "string"
+        example: "IN"
+      mobileNumber:
+        type: "string"
+        example: "9696969696"
+      email:
+        type: "string"
+        example: "customer@domain_name.com"
+      customerStatus:
+        type: "string"
+        description: "Order Status"
+        enum:
+          - "Open"
+          - "Close"
+          - "Suspended"
+          - "Restored"
+      address:
+        type: "array"
+        xml:
+          name: "Address"
+          wrapped: true
+        items:
+          $ref: "#/definitions/Address"
+    xml:
+      name: "Customer"
+  Address:
+    required:
+      - "addressLine1"
+      - "postalCode"
+    type: "object"
+    properties:
+      addressLine1:
+        type: "string"
+        example: "addressLine1"
+      addressLine2:
+        type: "string"
+        example: "addressLine2"
+      street:
+        type: "string"
+        example: "street"
+      postalCode:
+        type: "string"
+        example: "41615"
+    xml:
+      name: "Address"
+  Response:
+    required:
+      - "message"
+      - "status"
+    type: "object"
+    properties:
+      status:
+        type: "string"
+        example: "Success"
+      message:
+        type: "string"
+  ErrorResponse:
+    type: "object"
+    required:
+      - "message"
+      - "status"
+      - "error_type"
+    properties:
+      status:
+        type: "string"
+        example: "Error"
+      message:
+        type: "string"
+      error_type:
+        type: "string"
