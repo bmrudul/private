@@ -1,16 +1,17 @@
 package com.prokarma.publisher.model;
 
-import java.util.Objects;
-import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonValue;
 import io.swagger.annotations.ApiModelProperty;
+import org.springframework.validation.annotation.Validated;
+
+import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 import java.util.ArrayList;
 import java.util.List;
-import org.threeten.bp.OffsetDateTime;
-import org.springframework.validation.annotation.Validated;
-import javax.validation.Valid;
-import javax.validation.constraints.*;
+import java.util.Objects;
 
 /**
  * Customer
@@ -21,7 +22,7 @@ import javax.validation.constraints.*;
 
 
 
-public class Customer   {
+public class CustomerRequest {
   @JsonProperty("customerNumber")
   private String customerNumber = null;
 
@@ -32,7 +33,7 @@ public class Customer   {
   private String lastName = null;
 
   @JsonProperty("birthdate")
-  private OffsetDateTime birthdate = null;
+  private String birthdate = null;
 
   @JsonProperty("country")
   private String country = null;
@@ -51,11 +52,11 @@ public class Customer   {
    */
   public enum CustomerStatusEnum {
     OPEN("Open"),
-    
+
     CLOSE("Close"),
-    
+
     SUSPENDED("Suspended"),
-    
+
     RESTORED("Restored");
 
     private String value;
@@ -85,10 +86,11 @@ public class Customer   {
   private CustomerStatusEnum customerStatus = null;
 
   @JsonProperty("address")
+  @NotNull
   @Valid
   private List<Address> address = new ArrayList<Address>();
 
-  public Customer customerNumber(String customerNumber) {
+  public CustomerRequest customerNumber(String customerNumber) {
     this.customerNumber = customerNumber;
     return this;
   }
@@ -100,7 +102,9 @@ public class Customer   {
   @ApiModelProperty(example = "C000000001", required = true, value = "")
   @NotNull
 
-
+  @Pattern(
+          regexp = "^[a-zA-Z\\d]{0,10}$",
+          message = "CustomerNumber is invalid. CustomerNumber must contain only alphabets with max length 10.")
   public String getCustomerNumber() {
     return customerNumber;
   }
@@ -109,19 +113,21 @@ public class Customer   {
     this.customerNumber = customerNumber;
   }
 
-  public Customer firstName(String firstName) {
+  public CustomerRequest firstName(String firstName) {
     this.firstName = firstName;
     return this;
   }
 
   /**
    * Get firstName
+   *
    * @return firstName
-  **/
+   */
   @ApiModelProperty(example = "C000000001", required = true, value = "")
   @NotNull
-
-
+  @Pattern(
+      regexp = "^[a-zA-Z]{10,50}$",
+      message = "FirstName is invalid. FirstName must contain only alphabets with min length 10 and max length 50.")
   public String getFirstName() {
     return firstName;
   }
@@ -130,7 +136,7 @@ public class Customer   {
     this.firstName = firstName;
   }
 
-  public Customer lastName(String lastName) {
+  public CustomerRequest lastName(String lastName) {
     this.lastName = lastName;
     return this;
   }
@@ -142,7 +148,9 @@ public class Customer   {
   @ApiModelProperty(example = "customer_last_name", required = true, value = "")
   @NotNull
 
-
+  @Pattern(
+          regexp = "^[a-zA-Z]{10,50}$",
+          message = "LastName is invalid. LastName must contain only alphabets with min length 10 and max length 50.")
   public String getLastName() {
     return lastName;
   }
@@ -151,29 +159,31 @@ public class Customer   {
     this.lastName = lastName;
   }
 
-  public Customer birthdate(OffsetDateTime birthdate) {
+  public CustomerRequest birthdate(String birthdate) {
     this.birthdate = birthdate;
     return this;
   }
 
   /**
    * Get birthdate
+   *
    * @return birthdate
-  **/
+   */
   @ApiModelProperty(required = true, value = "")
   @NotNull
-
   @Valid
-
-  public OffsetDateTime getBirthdate() {
+  @Pattern(
+          regexp = "^([0-9]{2})-([0-9]{2})-([0-9]{4})$",
+          message = "Birthdate is invalid.")
+  public String getBirthdate() {
     return birthdate;
   }
 
-  public void setBirthdate(OffsetDateTime birthdate) {
+  public void setBirthdate(String birthdate) {
     this.birthdate = birthdate;
   }
 
-  public Customer country(String country) {
+  public CustomerRequest country(String country) {
     this.country = country;
     return this;
   }
@@ -185,7 +195,9 @@ public class Customer   {
   @ApiModelProperty(example = "India", required = true, value = "")
   @NotNull
 
-
+  @Pattern(
+          regexp = "^[a-zA-Z]{0,50}$",
+          message = "Country is invalid. Country must contain only alphabets.")
   public String getCountry() {
     return country;
   }
@@ -194,7 +206,7 @@ public class Customer   {
     this.country = country;
   }
 
-  public Customer countryCode(String countryCode) {
+  public CustomerRequest countryCode(String countryCode) {
     this.countryCode = countryCode;
     return this;
   }
@@ -206,7 +218,9 @@ public class Customer   {
   @ApiModelProperty(example = "IN", required = true, value = "")
   @NotNull
 
-
+  @Pattern(
+          regexp = "^[a-zA-Z]{0,2}$",
+          message = "CountryCode is invalid. CountryCode must contain only alphabets with max length 2.")
   public String getCountryCode() {
     return countryCode;
   }
@@ -215,7 +229,7 @@ public class Customer   {
     this.countryCode = countryCode;
   }
 
-  public Customer mobileNumber(String mobileNumber) {
+  public CustomerRequest mobileNumber(String mobileNumber) {
     this.mobileNumber = mobileNumber;
     return this;
   }
@@ -227,7 +241,9 @@ public class Customer   {
   @ApiModelProperty(example = "9696969696", required = true, value = "")
   @NotNull
 
-
+  @Pattern(
+          regexp = "^[\\d]{0,10}$",
+          message = "MobileNumber is invalid. MobileNumber must contain only numbers with max length 10.")
   public String getMobileNumber() {
     return mobileNumber;
   }
@@ -236,7 +252,7 @@ public class Customer   {
     this.mobileNumber = mobileNumber;
   }
 
-  public Customer email(String email) {
+  public CustomerRequest email(String email) {
     this.email = email;
     return this;
   }
@@ -248,7 +264,9 @@ public class Customer   {
   @ApiModelProperty(example = "customer@domain_name.com", required = true, value = "")
   @NotNull
 
-
+  @Pattern(
+          regexp = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,6}$",
+          message = "Email fields is invalid.")
   public String getEmail() {
     return email;
   }
@@ -257,7 +275,7 @@ public class Customer   {
     this.email = email;
   }
 
-  public Customer customerStatus(CustomerStatusEnum customerStatus) {
+  public CustomerRequest customerStatus(CustomerStatusEnum customerStatus) {
     this.customerStatus = customerStatus;
     return this;
   }
@@ -278,12 +296,12 @@ public class Customer   {
     this.customerStatus = customerStatus;
   }
 
-  public Customer address(List<Address> address) {
+  public CustomerRequest address(List<Address> address) {
     this.address = address;
     return this;
   }
 
-  public Customer addAddressItem(Address addressItem) {
+  public CustomerRequest addAddressItem(Address addressItem) {
     this.address.add(addressItem);
     return this;
   }
@@ -314,17 +332,17 @@ public class Customer   {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    Customer customer = (Customer) o;
-    return Objects.equals(this.customerNumber, customer.customerNumber) &&
-        Objects.equals(this.firstName, customer.firstName) &&
-        Objects.equals(this.lastName, customer.lastName) &&
-        Objects.equals(this.birthdate, customer.birthdate) &&
-        Objects.equals(this.country, customer.country) &&
-        Objects.equals(this.countryCode, customer.countryCode) &&
-        Objects.equals(this.mobileNumber, customer.mobileNumber) &&
-        Objects.equals(this.email, customer.email) &&
-        Objects.equals(this.customerStatus, customer.customerStatus) &&
-        Objects.equals(this.address, customer.address);
+    CustomerRequest customerRequest = (CustomerRequest) o;
+    return Objects.equals(this.customerNumber, customerRequest.customerNumber) &&
+        Objects.equals(this.firstName, customerRequest.firstName) &&
+        Objects.equals(this.lastName, customerRequest.lastName) &&
+        Objects.equals(this.birthdate, customerRequest.birthdate) &&
+        Objects.equals(this.country, customerRequest.country) &&
+        Objects.equals(this.countryCode, customerRequest.countryCode) &&
+        Objects.equals(this.mobileNumber, customerRequest.mobileNumber) &&
+        Objects.equals(this.email, customerRequest.email) &&
+        Objects.equals(this.customerStatus, customerRequest.customerStatus) &&
+        Objects.equals(this.address, customerRequest.address);
   }
 
   @Override
@@ -336,7 +354,7 @@ public class Customer   {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class Customer {\n");
-    
+
     sb.append("    customerNumber: ").append(toIndentedString(customerNumber)).append("\n");
     sb.append("    firstName: ").append(toIndentedString(firstName)).append("\n");
     sb.append("    lastName: ").append(toIndentedString(lastName)).append("\n");

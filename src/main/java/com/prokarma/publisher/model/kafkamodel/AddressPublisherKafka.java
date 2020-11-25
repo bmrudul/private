@@ -1,23 +1,24 @@
-package com.prokarma.publisher.model;
+package com.prokarma.publisher.model.kafkamodel;
 
+import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import org.springframework.validation.annotation.Validated;
-
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Pattern;
-import java.util.Objects;
+import javax.validation.Valid;
+import javax.validation.constraints.*;
 
 /**
- * Address
+ * AddressPublisherKafka
  */
 @Validated
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.SpringCodegen", date = "2020-11-19T10:32:18.349Z")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.SpringCodegen", date = "2020-11-25T13:22:58.572Z")
 
 
 
 
-public class Address   {
+public class AddressPublisherKafka   {
   @JsonProperty("addressLine1")
   private String addressLine1 = null;
 
@@ -30,7 +31,7 @@ public class Address   {
   @JsonProperty("postalCode")
   private String postalCode = null;
 
-  public Address addressLine1(String addressLine1) {
+  public AddressPublisherKafka addressLine1(String addressLine1) {
     this.addressLine1 = addressLine1;
     return this;
   }
@@ -39,12 +40,9 @@ public class Address   {
    * Get addressLine1
    * @return addressLine1
   **/
-  @ApiModelProperty(example = "addressLine1", required = true, value = "")
-  @NotNull
+  @ApiModelProperty(example = "addressLine1", value = "")
 
-  @Pattern(
-          regexp = "^[a-zA-Z][a-zA-Z\\d]{0,50}$",
-          message = "AddressLine1 is invalid. AddressLine1 must be a string with max length 2.")
+
   public String getAddressLine1() {
     return addressLine1;
   }
@@ -53,7 +51,7 @@ public class Address   {
     this.addressLine1 = addressLine1;
   }
 
-  public Address addressLine2(String addressLine2) {
+  public AddressPublisherKafka addressLine2(String addressLine2) {
     this.addressLine2 = addressLine2;
     return this;
   }
@@ -73,7 +71,7 @@ public class Address   {
     this.addressLine2 = addressLine2;
   }
 
-  public Address street(String street) {
+  public AddressPublisherKafka street(String street) {
     this.street = street;
     return this;
   }
@@ -93,7 +91,7 @@ public class Address   {
     this.street = street;
   }
 
-  public Address postalCode(String postalCode) {
+  public AddressPublisherKafka postalCode(String postalCode) {
     this.postalCode = postalCode;
     return this;
   }
@@ -102,12 +100,9 @@ public class Address   {
    * Get postalCode
    * @return postalCode
   **/
-  @ApiModelProperty(example = "41615", required = true, value = "")
-  @NotNull
+  @ApiModelProperty(example = "41615", value = "")
 
-  @Pattern(
-          regexp = "^[\\d]{0,5}$",
-          message = "PostalCode is invalid. PostalCode must contain only numbers with max length 5.")
+
   public String getPostalCode() {
     return postalCode;
   }
@@ -125,11 +120,11 @@ public class Address   {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    Address address = (Address) o;
-    return Objects.equals(this.addressLine1, address.addressLine1) &&
-        Objects.equals(this.addressLine2, address.addressLine2) &&
-        Objects.equals(this.street, address.street) &&
-        Objects.equals(this.postalCode, address.postalCode);
+    AddressPublisherKafka addressPublisherKafka = (AddressPublisherKafka) o;
+    return Objects.equals(this.addressLine1, addressPublisherKafka.addressLine1) &&
+        Objects.equals(this.addressLine2, addressPublisherKafka.addressLine2) &&
+        Objects.equals(this.street, addressPublisherKafka.street) &&
+        Objects.equals(this.postalCode, addressPublisherKafka.postalCode);
   }
 
   @Override
@@ -140,7 +135,7 @@ public class Address   {
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class Address {\n");
+    sb.append("class AddressPublisherKafka {\n");
     
     sb.append("    addressLine1: ").append(toIndentedString(addressLine1)).append("\n");
     sb.append("    addressLine2: ").append(toIndentedString(addressLine2)).append("\n");

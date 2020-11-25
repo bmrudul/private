@@ -2,7 +2,6 @@ package com.prokarma.publisher.constants;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
-import com.prokarma.publisher.model.Customer;
 
 public enum PublisherConstant {
 
@@ -10,7 +9,9 @@ public enum PublisherConstant {
 
     ERROR("Error");
 
-    private String value;
+
+
+    private final String value;
 
     PublisherConstant(String value) {
         this.value = value;

@@ -66,14 +66,14 @@
         </rollingPolicy>
     </appender>
 
-    <logger name="org.springframework.web" level="ERROR" additivity="false">
+    <!--<logger name="org.springframework.web" level="ERROR" additivity="false">
         <appender-ref ref="STDOUT" />
         <appender-ref ref="ERROR-LOG" />
-    </logger>
+    </logger>-->
 
     <logger name="com.prokarma" level="INFO" additivity="false">
         <appender-ref ref="STDOUT" />
-        <appender-ref ref="ERROR-LOG" />
+        <appender-ref ref="INFO-LOG" />
     </logger>
 
     <root level="INFO">
