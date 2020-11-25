@@ -8,7 +8,7 @@ info:
   version: 1.0.0
 
 tags:
-  - name: "publisher"
+  - name: "retaill-customer"
     description: "Everything about publisher"
 
 schemes:
@@ -17,7 +17,7 @@ schemes:
 basePath: "/v1/publisher"
 
 paths:
-  /publisher:
+  /retaill-customer:
     post:
       tags:
         - "publisher"
@@ -34,7 +34,7 @@ paths:
           description: "Customer object that needs to be published to Kafka"
           required: true
           schema:
-            $ref: "#/definitions/Customer"
+            $ref: "#/definitions/CustomerRequest"
         - in: "header"
           name: "Authorization"
           description: "Authorization request header contains access_token to access the API."
@@ -82,7 +82,7 @@ securityDefinitions:
       write:publisher: "Publish customer data"
 
 definitions:
-  Customer:
+  CustomerRequest:
     required:
       - "address"
       - "birthdate"
@@ -99,6 +99,7 @@ definitions:
       customerNumber:
         type: "string"
         example: "C000000001"
+        maxLength: 10
       firstName:
         type: "string"
         example: "C000000001"
@@ -107,7 +108,7 @@ definitions:
         example: "customer_last_name"
       birthdate:
         type: "string"
-        format: "date-time"
+        format: "String"
       country:
         type: "string"
         example: "India"
@@ -136,7 +137,7 @@ definitions:
         items:
           $ref: "#/definitions/Address"
     xml:
-      name: "Customer"
+      name: "CustomerRequest"
   Address:
     required:
       - "addressLine1"
