@@ -29,12 +29,12 @@ public class AuthorizationServer extends AuthorizationServerConfigurerAdapter {
                 .inMemory()
                 .withClient("client_publisher")
                 .secret(passwordEncoder.encode("secret"))
-                .authorizedGrantTypes("client_credentials", "password")
+                .authorizedGrantTypes("client_credentials")
                 .autoApprove(true)
                 .authorities("READ_ONLY_CLIENT")
                 .scopes("write:publisher")
                 .resourceIds("oauth2-resource")
-                .accessTokenValiditySeconds(120)
+                .accessTokenValiditySeconds(900)
                 .refreshTokenValiditySeconds(240000);
     }
 
