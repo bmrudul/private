@@ -7,9 +7,13 @@ public enum PublisherConstant {
 
     SUCCESS("Success"),
 
-    ERROR("Error");
+    ERROR("Error"),
 
+    CUSTOMER_NUMBER_MASK("(\\w{0,4})$"),
 
+    DOB_MASK("^([0-2][0-9]|(3)[0-1])(-)(((0)[0-9])|((1)[0-2]))"),
+
+    EMAIL_MASK("^(\\w{0,4})");
 
     private final String value;
 
