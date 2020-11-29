@@ -100,7 +100,7 @@ public class CustomerRequest {
    * @return customerNumber
   **/
   @ApiModelProperty(example = "C000000001", required = true, value = "")
-  @NotNull
+  @NotNull(message = "CustomerNumber must not null.")
 
   @Pattern(
           regexp = "^[a-zA-Z\\d]{0,10}$",

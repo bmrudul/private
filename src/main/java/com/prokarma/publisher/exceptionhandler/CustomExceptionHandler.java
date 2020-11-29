@@ -74,8 +74,8 @@ public class CustomExceptionHandler {
         ErrorResponse resp = new ErrorResponse();
         resp.setErrorType(ex.getClass().getSimpleName());
         resp.setStatus(PublisherConstant.ERROR.getValue());
-        resp.setMessage("resource not found "+ex.getMessage());
-        return new ResponseEntity(resp, HttpStatus.NOT_FOUND);
+        resp.setMessage("Authorization required. "+ex.getMessage());
+        return new ResponseEntity(resp, HttpStatus.UNAUTHORIZED);
     }
 
     @ExceptionHandler(ServletRequestBindingException.class)

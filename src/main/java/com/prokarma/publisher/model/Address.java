@@ -43,7 +43,7 @@ public class Address   {
   @NotNull
 
   @Pattern(
-          regexp = "^[a-zA-Z][a-zA-Z\\d]{0,50}$",
+          regexp = "^[a-zA-Z][a-zA-Z\\d\\s]{0,50}$",
           message = "AddressLine1 is invalid. AddressLine1 must be a string with max length 2.")
   public String getAddressLine1() {
     return addressLine1;
