@@ -125,4 +125,7 @@ class TestCustomerPublisherController {
             throw new RuntimeException(e);
         }
     }
+    
+
+    //https://dzone.com/articles/rest-endpoint-testing-with-mockmvc
 }
