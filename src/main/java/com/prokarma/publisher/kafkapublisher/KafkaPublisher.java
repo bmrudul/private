@@ -1,6 +1,5 @@
 package com.prokarma.publisher.kafkapublisher;
 
-import com.prokarma.publisher.exception.GenericException;
 import com.prokarma.publisher.model.kafkamodel.CustomerRequestKafka;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -28,8 +27,6 @@ public class KafkaPublisher {
      * @param customerRequestKafka
      */
     public void publish(CustomerRequestKafka customerRequestKafka) {
-        logger.info("#### -> Producing message -> ");
-
         ListenableFuture<SendResult<String, Object>> future = kafkaTemplate.send(TOPIC, customerRequestKafka);
 
         future.addCallback(new ListenableFutureCallback<SendResult<String, Object>>() {
@@ -42,8 +39,6 @@ public class KafkaPublisher {
             public void onFailure(Throwable ex) {
                 logger.info("Unable to send message=["
                         + "] due to : " + ex.getMessage());
-
-                throw new GenericException("Error while publishing message to Kafka. "+ex.getMessage());
             }
         });
     }

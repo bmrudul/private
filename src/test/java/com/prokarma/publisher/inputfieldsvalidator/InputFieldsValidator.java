@@ -24,7 +24,7 @@ class InputFieldsValidator {
     private static CustomerRequest customerRequest;
 
     @BeforeAll
-    public static void setup(){
+    static void setup(){
         ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
         validator = factory.getValidator();
         customerRequest = createCustomerWithValidInputFields();
