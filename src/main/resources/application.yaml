@@ -1,14 +1,3 @@
-#spring:
-#  datasource:
-#    driverClassName: com.mysql.cj.jdbc.Driver
-#    url: jdbc:mysql://localhost:3306/world
-#    username: root
-#    password: root
-#  jpa:
-#    hibernate.ddl-auto: update
-#    generate-ddl: true
-#    show-sql: false
-
 spring:
   kafka:
     producer:
@@ -17,9 +6,3 @@ spring:
       value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
 
 
-      #spring.kafka.consumer.bootstrap-servers: localhost:9092
-      #spring.kafka.consumer.group-id: group-id
-      #spring.kafka.consumer.auto-offset-reset: earliest
-      #spring.kafka.consumer.key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
-      #spring.kafka.consumer.value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
-      #spring.kafka.consumer.properties.spring.json.trusted.packages=*

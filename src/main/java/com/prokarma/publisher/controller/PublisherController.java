@@ -1,10 +1,10 @@
 package com.prokarma.publisher.controller;
 
-import com.prokarma.publisher.constants.PublisherConstant;
 import com.prokarma.publisher.converters.CustomerMaskConverter;
-import com.prokarma.publisher.kafkapublisher.KafkaPublisher;
+import com.prokarma.publisher.kafkapublisher.CustomerPublisherKafka;
 import com.prokarma.publisher.model.CustomerRequest;
-import com.prokarma.publisher.response.Response;
+import com.prokarma.publisher.model.kafkamodel.CustomerRequestKafka;
+import com.prokarma.publisher.response.CustomerResponse;
 import com.prokarma.publisher.converters.CustomerPublisherConverter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -22,30 +22,30 @@ public class PublisherController {
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
     @Autowired
-    CustomerMaskConverter publisherMaskConverter;
+    private CustomerMaskConverter customerMaskConverter;
 
     @Autowired
-    KafkaPublisher kafkaPublisher;
+    private CustomerPublisherKafka customerPublisherKafka;
 
     @Autowired
-    CustomerPublisherConverter customerPublisherConverter;
+    private CustomerPublisherConverter customerPublisherConverter;
 
     @PostMapping("/retail-customer")
-    public ResponseEntity<Response> publishCustomerData(
+    public ResponseEntity<CustomerResponse> publishCustomerData(
             @RequestHeader(value = "Authorization") String authorization,
             @RequestHeader(value = "Activity-id") String activityId,
             @RequestHeader(value = "Transaction-id") String transactionId,
             @Valid @RequestBody CustomerRequest customerRequest){
-        logger.info("InComingRequest : " + publisherMaskConverter.convert(customerRequest));
+        logger.info("InComingRequest : {}", customerMaskConverter.convert(customerRequest));
 
         //Integration with Kafka - Convert and publish customer data to the Kafka
-        kafkaPublisher.publish(customerPublisherConverter.convert(customerRequest));
+        CustomerRequestKafka customerRequestKafka = customerPublisherConverter.convert(customerRequest);
+        customerRequestKafka.setActivityId(activityId);
+        customerRequestKafka.setTransactionId(transactionId);
 
-        Response response = new Response();
-        response.setStatus(PublisherConstant.SUCCESS.getValue());
-        response.setMessage("Customer data has been published successfully");
-        logger.info("OutGoingResponse : "+response.toString());
-        return new ResponseEntity<>(response, HttpStatus.OK);
+        CustomerResponse customerResponse = customerPublisherKafka.publish(customerRequestKafka);
+        logger.info("OutGoingResponse : {}", customerResponse.toString());
+        return new ResponseEntity<>(customerResponse, HttpStatus.OK);
     }
 
 }

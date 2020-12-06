@@ -22,6 +22,26 @@ public class CustomerRequestKafka   {
 
   private String email;
 
+  private String transactionId;
+
+  private String activityId;
+
+  public String getTransactionId() {
+    return transactionId;
+  }
+
+  public void setTransactionId(String transactionId) {
+    this.transactionId = transactionId;
+  }
+
+  public String getActivityId() {
+    return activityId;
+  }
+
+  public void setActivityId(String activityId) {
+    this.activityId = activityId;
+  }
+
   /**
    * Order Status
    */

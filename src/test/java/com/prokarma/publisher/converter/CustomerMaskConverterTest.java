@@ -3,10 +3,8 @@ package com.prokarma.publisher.converter;
 import com.prokarma.publisher.converters.CustomerMaskConverter;
 import com.prokarma.publisher.model.Address;
 import com.prokarma.publisher.model.CustomerRequest;
-import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,29 +12,25 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
-@SpringBootTest
-class MaskConverterTest {
+class CustomerMaskConverterTest {
 
-    @Autowired
-    CustomerMaskConverter customerMaskConverter;
+    private CustomerMaskConverter customerMaskConverter;
 
-    private static CustomerRequest customerRequest;
-
-    @BeforeAll
-    public static void setup(){
-        customerRequest = createCustomerWithValidInputFields();
+    @BeforeEach
+    public void setup(){
+        customerMaskConverter = new CustomerMaskConverter();
     }
 
     @Test
-    void testMaskingLogicWhenPassedValidCustomerFields(){
-        CustomerRequest maskedCustomer = customerMaskConverter.convert(customerRequest);
+    public void testMaskingLogicWhenPassedValidCustomerFields(){
+        CustomerRequest maskedCustomer = customerMaskConverter.convert(createCustomerWithValidInputFields());
         assertNotNull(maskedCustomer);
         assertEquals("C00**", maskedCustomer.getCustomerNumber());
         assertEquals("*-2020", maskedCustomer.getBirthdate());
         assertEquals("*omer@gmail.com", maskedCustomer.getEmail());
     }
 
-    static CustomerRequest createCustomerWithValidInputFields() {
+    private CustomerRequest createCustomerWithValidInputFields() {
         CustomerRequest customerRequest = new CustomerRequest();
         customerRequest.setCustomerNumber("C000001");
         customerRequest.setBirthdate("10-12-2020");
@@ -44,14 +38,14 @@ class MaskConverterTest {
         customerRequest.setCountryCode("IN");
         customerRequest.setCustomerStatus(CustomerRequest.CustomerStatusEnum.OPEN);
         customerRequest.setEmail("customer@gmail.com");
-        customerRequest.setFirstName("Firstnamevalid");
-        customerRequest.setLastName("Lastnamevalid");
+        customerRequest.setFirstName("FirstnameValid");
+        customerRequest.setLastName("LastnameValid");
         customerRequest.setMobileNumber("9696969696");
         customerRequest.setAddress(createAddressWithValidInputFields());
         return customerRequest;
     }
 
-    static List<Address> createAddressWithValidInputFields() {
+    private List<Address> createAddressWithValidInputFields() {
         List<Address> addressList = new ArrayList<>();
         Address address = new Address();
         address.setAddressLine1("addressLine1 address");

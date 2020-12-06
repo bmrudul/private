@@ -16,14 +16,14 @@ import javax.validation.constraints.*;
 
 
 
-public class Response {
+public class CustomerResponse {
   @JsonProperty("status")
   private String status = null;
 
   @JsonProperty("message")
   private String message = null;
 
-  public Response status(String status) {
+  public CustomerResponse status(String status) {
     this.status = status;
     return this;
   }
@@ -44,7 +44,7 @@ public class Response {
     this.status = status;
   }
 
-  public Response message(String message) {
+  public CustomerResponse message(String message) {
     this.message = message;
     return this;
   }
@@ -74,9 +74,9 @@ public class Response {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    Response successResponse = (Response) o;
-    return Objects.equals(this.status, successResponse.status) &&
-        Objects.equals(this.message, successResponse.message);
+    CustomerResponse successCustomerResponse = (CustomerResponse) o;
+    return Objects.equals(this.status, successCustomerResponse.status) &&
+        Objects.equals(this.message, successCustomerResponse.message);
   }
 
   @Override
