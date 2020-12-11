@@ -62,6 +62,12 @@
 			<version>0.0.20131108.vaadin1</version>
 			<scope>compile</scope>
 		</dependency>
+
+		<dependency>
+			<groupId>com.splunk.logging</groupId>
+			<artifactId>splunk-library-javalogging</artifactId>
+			<version>1.8.0</version>
+		</dependency>
 	</dependencies>
 
 	<build>
@@ -98,6 +104,11 @@
 			<id>spring-milestones</id>
 			<name>Spring Milestones</name>
 			<url>https://repo.spring.io/milestone</url>
+		</repository>
+		<repository>
+			<id>splunk-artifactory</id>
+			<name>Splunk Releases</name>
+			<url>https://splunk.jfrog.io/splunk/ext-releases-local</url>
 		</repository>
 	</repositories>
 

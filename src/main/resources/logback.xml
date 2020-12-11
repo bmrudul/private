@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <configuration>
-    <property name="PATH" value="logs" />
+    <property name="PATH" value="logs"/>
 
     <springProperty scope="context" name="springAppName" source="spring.application.name"/>
 
@@ -24,8 +24,8 @@
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
             <fileNamePattern>${PATH}/archived/info.%d{yyyy-MM-dd}.%i.log
             </fileNamePattern>
-                <timeBasedFileNamingAndTriggeringPolicy
-                        class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+            <timeBasedFileNamingAndTriggeringPolicy
+                    class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
                 <maxFileSize>10MB</maxFileSize>
             </timeBasedFileNamingAndTriggeringPolicy>
         </rollingPolicy>
@@ -42,8 +42,8 @@
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
             <fileNamePattern>${PATH}/archived/debug.%d{yyyy-MM-dd}.%i.log
             </fileNamePattern>
-                <timeBasedFileNamingAndTriggeringPolicy
-                        class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+            <timeBasedFileNamingAndTriggeringPolicy
+                    class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
                 <maxFileSize>10MB</maxFileSize>
             </timeBasedFileNamingAndTriggeringPolicy>
         </rollingPolicy>
@@ -71,13 +71,26 @@
         <appender-ref ref="ERROR-LOG" />
     </logger>-->
 
+    <Appender name="SPLUNK" class="com.splunk.logging.HttpEventCollectorLogbackAppender">
+        <url>https://prd-p-ufz6f.splunkcloud.com:8088</url>
+        <token>70cfd4a7-2d4b-4dca-8883-5c64e7d483fd</token>
+        <index>main</index>
+        <sourcetype>_json</sourcetype>
+        <disableCertificateValidation>true</disableCertificateValidation>
+        <layout class="ch.qos.logback.classic.PatternLayout">
+            <pattern>%msg</pattern>
+        </layout>
+    </Appender>
+
     <logger name="com.prokarma" level="INFO" additivity="false">
-        <appender-ref ref="STDOUT" />
-        <appender-ref ref="INFO-LOG" />
+        <appender-ref ref="STDOUT"/>
+        <appender-ref ref="INFO-LOG"/>
+        <appender-ref ref="SPLUNK"/>
     </logger>
 
     <root level="INFO">
-        <appender-ref ref="STDOUT" />
+        <appender-ref ref="STDOUT"/>
+        <appender-ref ref="SPLUNK"/>
     </root>
 
 </configuration>

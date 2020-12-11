@@ -16,7 +16,7 @@ public class CustomerPublisherKafka {
 
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
-    private static final String TOPIC = "customer2";
+    private static final String TOPIC = "udv8zj5z-test";
 
     @Autowired
     private KafkaTemplate<String, CustomerRequestKafka> kafkaTemplate;
