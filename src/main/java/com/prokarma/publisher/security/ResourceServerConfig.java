@@ -15,7 +15,6 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
         http
                 .authorizeRequests()
                 .antMatchers("/**/publisher/**").authenticated()
-                .antMatchers("/**/oauth/**").permitAll()
                 .antMatchers("/").permitAll()
                 .and()
                 .exceptionHandling().accessDeniedHandler(new OAuth2AccessDeniedHandler());
