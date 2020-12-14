@@ -73,7 +73,7 @@
 
     <Appender name="SPLUNK" class="com.splunk.logging.HttpEventCollectorLogbackAppender">
         <url>https://prd-p-ufz6f.splunkcloud.com:8088</url>
-        <token>70cfd4a7-2d4b-4dca-8883-5c64e7d483fd</token>
+        <token>78a667ae-e9df-4195-9dc8-9048a2bd5f9a</token>
         <index>main</index>
         <sourcetype>_json</sourcetype>
         <disableCertificateValidation>true</disableCertificateValidation>
